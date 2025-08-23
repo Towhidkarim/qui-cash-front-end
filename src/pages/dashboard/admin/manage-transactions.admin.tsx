@@ -36,6 +36,7 @@ import {
 } from 'lucide-react';
 import { useGetAllTransactionsQuery } from '@/redux/api/transaction.api';
 import type { TTRansaction } from '@/lib/types';
+import { format } from 'date-fns';
 
 const ITEMS_PER_PAGE = 15;
 
@@ -90,7 +91,8 @@ export default function ManageTransactionsPage() {
   const stats = useMemo(() => {
     const total = filteredTransactions.length;
     const successful = filteredTransactions.filter(
-      (t) => t.transactionStatus === 'successful'
+      (t) =>
+        t.transactionStatus !== 'failed' && t.transactionStatus !== 'pending'
     ).length;
     const pending = filteredTransactions.filter(
       (t) => t.transactionStatus === 'pending'
@@ -306,7 +308,7 @@ export default function ManageTransactionsPage() {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value='all'>All Status</SelectItem>
-                  <SelectItem value='successful'>Successful</SelectItem>
+                  <SelectItem value='succesful'>Successful</SelectItem>
                   <SelectItem value='pending'>Pending</SelectItem>
                   <SelectItem value='failed'>Failed</SelectItem>
                 </SelectContent>
@@ -395,7 +397,7 @@ export default function ManageTransactionsPage() {
                           {getStatusBadge(transaction.transactionStatus)}
                         </TableCell>
                         <TableCell className='text-muted-foreground'>
-                          {new Date(transaction.createdAt).toLocaleDateString(
+                          {/* {new Date(transaction.createdAt).toLocaleDateString(
                             'en-US',
                             {
                               year: 'numeric',
@@ -404,7 +406,8 @@ export default function ManageTransactionsPage() {
                               hour: '2-digit',
                               minute: '2-digit',
                             }
-                          )}
+                          )} */}
+                          {format(new Date(transaction.createdAt), 'p, PP')}
                         </TableCell>
                       </TableRow>
                     ))

@@ -172,7 +172,7 @@ export default function AdminDashboard() {
         </div>
 
         <div className='gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
-          <Card className='bg-white hover:shadow-lg border-sky-700/20 transition-shadow'>
+          <Card className='hover:shadow-lg border-sky-700/20 transition-shadow'>
             <CardHeader className='flex flex-row justify-between items-center space-y-0 pb-2'>
               <CardTitle className='font-medium text-primary text-sm'>
                 Total Users
@@ -190,7 +190,7 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
 
-          <Card className='bg-white hover:shadow-lg border-sky-100 transition-shadow'>
+          <Card className='hover:shadow-lg border-sky-100 transition-shadow'>
             <CardHeader className='flex flex-row justify-between items-center space-y-0 pb-2'>
               <CardTitle className='font-medium text-sm'>
                 Total Agents
@@ -208,7 +208,7 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
 
-          <Card className='bg-white hover:shadow-lg border-sky-100 transition-shadow'>
+          <Card className='hover:shadow-lg border-sky-100 transition-shadow'>
             <CardHeader className='flex flex-row justify-between items-center space-y-0 pb-2'>
               <CardTitle className='font-medium text-sm'>
                 Transaction Count
@@ -226,7 +226,7 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
 
-          <Card className='bg-white hover:shadow-lg border-sky-100 transition-shadow'>
+          <Card className='hover:shadow-lg border-sky-100 transition-shadow'>
             <CardHeader className='flex flex-row justify-between items-center space-y-0 pb-2'>
               <CardTitle className='font-medium text-sm'>
                 Transaction Volume
@@ -252,7 +252,7 @@ export default function AdminDashboard() {
         {/* Charts Section */}
         <div className='gap-6 grid grid-cols-1 lg:grid-cols-2'>
           {/* Transaction Trends */}
-          <Card className='bg-white border-sky-500/20'>
+          <Card className='border-sky-500/20'>
             <CardHeader>
               <CardTitle className='text-primary'>Transaction Trends</CardTitle>
               <CardDescription className='text-muted-foreground'>
@@ -298,7 +298,7 @@ export default function AdminDashboard() {
           </Card>
 
           {/* User Distribution */}
-          <Card className='bg-white border-sky-100'>
+          <Card className='border-sky-100'>
             <CardHeader>
               <CardTitle className='text-primary'>User Distribution</CardTitle>
               <CardDescription className='text-muted-foreground'>
@@ -343,7 +343,7 @@ export default function AdminDashboard() {
         {/* Agent Performance and System Status */}
         <div className='gap-6 grid grid-cols-1 lg:grid-cols-3'>
           {/* Agent Performance */}
-          <Card className='lg:col-span-2 bg-white border-sky-100'>
+          <Card className='lg:col-span-2 border-sky-100'>
             <CardHeader>
               <CardTitle className='text-primary'>Agent Performance</CardTitle>
               <CardDescription className='text-muted-foreground'>
@@ -376,7 +376,7 @@ export default function AdminDashboard() {
           </Card>
 
           {/* System Status */}
-          <Card className='bg-white border-sky-100'>
+          <Card className='border-sky-100'>
             <CardHeader>
               <CardTitle className='text-primary'>System Status</CardTitle>
               <CardDescription className='text-muted-foreground'>
