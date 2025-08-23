@@ -17,6 +17,7 @@ type TSignUpCredentials = {
 type TSignInResponse = {
   accessToken: string;
   refreshToken: string;
+  userInfo: TUserData;
 };
 
 export const authApi = baseApi.injectEndpoints({

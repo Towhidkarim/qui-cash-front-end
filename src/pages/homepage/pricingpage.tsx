@@ -7,6 +7,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { COMISSIONS } from '@/lib/constants';
 
 export default function PricingPage() {
   return (
@@ -39,7 +40,9 @@ export default function PricingPage() {
               </CardHeader>
               <CardContent className='text-center'>
                 <div className='mb-6'>
-                  <span className='font-bold text-primary text-5xl'>0.15</span>
+                  <span className='font-bold text-primary text-5xl'>
+                    {COMISSIONS.sendMoney * 100}
+                  </span>
                   <span className='font-semibold text-primary text-2xl'>%</span>
                   <p className='mt-2 text-muted-foreground text-sm'>
                     per transaction
@@ -90,7 +93,9 @@ export default function PricingPage() {
               </CardHeader>
               <CardContent className='text-center'>
                 <div className='mb-6'>
-                  <span className='font-bold text-primary text-5xl'>0.18</span>
+                  <span className='font-bold text-primary text-5xl'>
+                    {COMISSIONS.cashOut * 100}
+                  </span>
                   <span className='font-semibold text-primary text-2xl'>%</span>
                   <p className='mt-2 text-muted-foreground text-sm'>
                     commission rate

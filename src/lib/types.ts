@@ -1,3 +1,5 @@
+export type TRoles = 'admin' | 'user' | 'agent';
+
 export type TResponse<TData> = {
   data: TData | undefined;
   message: string;
@@ -21,6 +23,19 @@ export type TWallet = {
   walletStatus: 'active' | 'frozen';
   balance: number;
   _id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type TTRansaction = {
+  _id: string;
+  amount: number;
+  initiatorName: string;
+  recipientName: string;
+  initiatorId: string;
+  recipientId: string;
+  transactionType: 'sendMoney' | 'cashIn' | 'cashOut' | 'addMoneyAdmin';
+  transactionStatus: 'successful' | 'pending' | 'failed';
   createdAt: string;
   updatedAt: string;
 };

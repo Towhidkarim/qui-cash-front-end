@@ -7,6 +7,12 @@ import AboutPage from './pages/aboutpage';
 import FAQPage from './pages/faqpage';
 import LoginPage from './pages/loginpage';
 import SignUpPage from './pages/signuppage';
+import { UserDashboard } from './pages/dashboard/user/user.dashboard';
+import { withAuth } from './lib/withAuth';
+import UserHomeDashboard from './pages/dashboard/user/home.user.dashboard';
+import TransactionHistoryUser from './pages/dashboard/user/history.user.dashboard';
+import SendMoneyPage from './pages/dashboard/user/send-money.user';
+import CashOutPage from './pages/dashboard/user/cash-out.user';
 
 export const routes = createBrowserRouter([
   {
@@ -27,5 +33,15 @@ export const routes = createBrowserRouter([
   {
     path: '/signup',
     Component: SignUpPage,
+  },
+  {
+    path: '/dashboard/user',
+    Component: withAuth(UserDashboard, ['user', 'admin']),
+    children: [
+      { Component: UserHomeDashboard, index: true },
+      { path: 'history', Component: TransactionHistoryUser },
+      { path: 'send-money', Component: SendMoneyPage },
+      { path: 'cash-out', Component: CashOutPage },
+    ],
   },
 ]);

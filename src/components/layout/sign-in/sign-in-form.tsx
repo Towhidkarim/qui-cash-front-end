@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 // import { toast } from 'sonner';
 import { useRef } from 'react';
 // import { Loader2 } from 'lucide-react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { useSignInMutation } from '@/redux/api/auth.api';
 import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
@@ -18,6 +18,8 @@ export function LoginForm({
 }: React.ComponentProps<'form'>) {
   const phoneRef = useRef('');
   const passwordRef = useRef('');
+
+  const navigate = useNavigate();
 
   const [signIn, { isLoading }] = useSignInMutation();
 
@@ -33,6 +35,8 @@ export function LoginForm({
         const accessToken = result.data?.accessToken;
         if (accessToken) localStorage.setItem('access_token', accessToken);
         toast.success('Signed In Succesfully!');
+        if (['user', 'admin'].includes(result.data.userInfo.role))
+          navigate('/dashboard/user');
       } else toast.error('Invalid Credential!');
     } catch {
       // console.error('Login failed:', err);

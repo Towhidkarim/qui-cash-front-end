@@ -13,6 +13,7 @@ import {
 import Logo from './logo';
 import { Link } from 'react-router';
 import { ModeToggle } from '../mode-toggle';
+import { useGetMyUserInfoQuery } from '@/redux/api/user.api';
 
 const navigationLinks = [
   { href: '/', label: 'Home' },
@@ -23,6 +24,7 @@ const navigationLinks = [
 ];
 
 export default function NavBar() {
+  const { data } = useGetMyUserInfoQuery(undefined);
   return (
     <header className='top-0 z-10 sticky bg-background px-4 md:px-6 border-b'>
       <div className='flex justify-between items-center gap-4 h-16'>
@@ -107,9 +109,18 @@ export default function NavBar() {
         {/* Right side */}
         <div className='flex items-center gap-4'>
           <ModeToggle />
-          <Button asChild>
-            <Link to='/signin'>Sign In</Link>
-          </Button>
+          {data?.data ? (
+            <>
+              <Button asChild>
+                <Link to='/signin'>Dashboard</Link>
+              </Button>
+              <Button>Log Out</Button>
+            </>
+          ) : (
+            <Button asChild>
+              <Link to='/signin'>Sign In</Link>
+            </Button>
+          )}
         </div>
       </div>
     </header>
