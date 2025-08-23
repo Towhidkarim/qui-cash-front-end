@@ -2,12 +2,20 @@ import { useGetMyUserInfoQuery } from '@/redux/api/user.api';
 import { type TRoles } from './types';
 import { type ComponentType } from 'react';
 import { Navigate } from 'react-router';
+import { toast } from 'sonner';
 
 export const withAuth = (Component: ComponentType, requiredRole: TRoles[]) => {
   return function AuthWrapper() {
     const { data, isLoading } = useGetMyUserInfoQuery(undefined);
     if (!isLoading && !data?.data?.email) {
       return <Navigate to='/signin' />;
+    }
+    if (data?.data?.accountStatus === 'inactive') {
+      toast.error('Account Disabled!', {
+        description:
+          'Disabled accounts can not view their dashboard, not other information',
+      });
+      return <Navigate to='/' />;
     }
 
     if (

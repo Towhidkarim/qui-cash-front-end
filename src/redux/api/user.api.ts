@@ -50,6 +50,27 @@ export const userApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['USER'],
     }),
+    setAccountStatus: build.mutation<
+      TResponse<TUserData | null>,
+      {
+        statusToSet: 'active' | 'inactive';
+        targetAccountPhoneNumber: string;
+      }
+    >({
+      query: (data) => ({
+        url: `/user/set-account-status`,
+        method: 'PATCH',
+        data,
+      }),
+      invalidatesTags: ['ALL_USERS'],
+    }),
+    getAllUser: build.query<TResponse<TUserData[]>, undefined>({
+      query: () => ({
+        url: '/user/get-all',
+        method: 'GET',
+      }),
+      providesTags: ['ALL_USERS'],
+    }),
   }),
 });
 
@@ -58,4 +79,6 @@ export const {
   useLazyGetUserInfoByPhoneNumberQuery,
   useUpdateUserInfoMutation,
   useUpdateUserPasswordMutation,
+  useGetAllUserQuery,
+  useSetAccountStatusMutation,
 } = userApi;

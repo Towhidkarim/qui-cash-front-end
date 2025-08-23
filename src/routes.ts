@@ -17,6 +17,10 @@ import UserSettingsPage from './pages/dashboard/user/user.settings';
 import AgentHomeDashboard from './pages/dashboard/agent/home.agent';
 import { AgentDashboard } from './pages/dashboard/agent/agent.dashboard';
 import CashInPage from './pages/dashboard/agent/cash-in.agent';
+import { AdminDashboard } from './pages/dashboard/admin/user.dashboard';
+import AdminHomeDashboard from './pages/dashboard/admin/home.admin';
+import ManageUsersPage from './pages/dashboard/admin/manage-users.admin';
+import ManageTransactionsPage from './pages/dashboard/admin/manage-transactions.admin';
 
 export const routes = createBrowserRouter([
   {
@@ -57,6 +61,18 @@ export const routes = createBrowserRouter([
       { path: 'history', Component: TransactionHistoryUser },
       { path: 'send-money', Component: SendMoneyPage },
       { path: 'cash-in', Component: CashInPage },
+      { path: 'settings', Component: UserSettingsPage },
+    ],
+  },
+  {
+    path: '/dashboard/admin',
+    Component: withAuth(AdminDashboard, ['admin']),
+    children: [
+      { Component: AdminHomeDashboard, index: true },
+      { path: 'history', Component: TransactionHistoryUser },
+      { path: 'manage-users', Component: ManageUsersPage },
+      { path: 'manage-transactions', Component: ManageTransactionsPage },
+
       { path: 'settings', Component: UserSettingsPage },
     ],
   },

@@ -19,7 +19,7 @@ export const transactionApi = baseApi.injectEndpoints({
         method: 'POST',
         data,
       }),
-      invalidatesTags: ['TRANSACTION', 'WALLET'],
+      invalidatesTags: ['TRANSACTION', 'WALLET', 'ALL_TRANSACTIONS'],
     }),
     cashOut: build.mutation<
       TResponse<TTRansaction>,
@@ -30,7 +30,7 @@ export const transactionApi = baseApi.injectEndpoints({
         method: 'POST',
         data,
       }),
-      invalidatesTags: ['TRANSACTION', 'WALLET'],
+      invalidatesTags: ['TRANSACTION', 'WALLET', 'ALL_TRANSACTIONS'],
     }),
     cashIn: build.mutation<
       TResponse<TTRansaction>,
@@ -41,7 +41,15 @@ export const transactionApi = baseApi.injectEndpoints({
         method: 'POST',
         data,
       }),
-      invalidatesTags: ['TRANSACTION', 'WALLET'],
+      invalidatesTags: ['TRANSACTION', 'WALLET', 'ALL_TRANSACTIONS'],
+    }),
+    getAllTransactions: build.query<TResponse<TTRansaction[]>, undefined>({
+      query: (data) => ({
+        url: '/transaction/get-all',
+        method: 'GET',
+        data,
+      }),
+      providesTags: ['ALL_TRANSACTIONS'],
     }),
   }),
 });
@@ -51,4 +59,5 @@ export const {
   useSendMoneyMutation,
   useCashOutMutation,
   useCashInMutation,
+  useGetAllTransactionsQuery,
 } = transactionApi;
