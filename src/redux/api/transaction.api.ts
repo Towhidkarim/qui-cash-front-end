@@ -1,7 +1,7 @@
 import type { TResponse, TTRansaction } from '@/lib/types';
 import { baseApi } from './base.api';
 
-export const authApi = baseApi.injectEndpoints({
+export const transactionApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getMyTransactions: build.query<TResponse<TTRansaction[]>, undefined>({
       query: () => ({
@@ -32,6 +32,17 @@ export const authApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['TRANSACTION', 'WALLET'],
     }),
+    cashIn: build.mutation<
+      TResponse<TTRansaction>,
+      { recipientPhoneNumber: string; amount: number }
+    >({
+      query: (data) => ({
+        url: '/transaction/cash-in',
+        method: 'POST',
+        data,
+      }),
+      invalidatesTags: ['TRANSACTION', 'WALLET'],
+    }),
   }),
 });
 
@@ -39,4 +50,5 @@ export const {
   useGetMyTransactionsQuery,
   useSendMoneyMutation,
   useCashOutMutation,
-} = authApi;
+  useCashInMutation,
+} = transactionApi;

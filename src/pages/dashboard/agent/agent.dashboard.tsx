@@ -21,9 +21,8 @@ import {
   User,
   Home,
   Settings,
-  BanknoteArrowUp,
-  HandCoins,
   ClipboardClock,
+  BanknoteArrowDown,
 } from 'lucide-react';
 import { Link, Outlet, ScrollRestoration, useLocation } from 'react-router';
 
@@ -31,32 +30,27 @@ import { Link, Outlet, ScrollRestoration, useLocation } from 'react-router';
 const items = [
   {
     title: 'Home',
-    url: '/dashboard/user',
+    url: '/dashboard/agent',
     icon: Home,
   },
   {
-    title: 'Send Money',
-    url: '/dashboard/user/send-money',
-    icon: BanknoteArrowUp,
-  },
-  {
-    title: 'Cash Out',
-    url: '/dashboard/user/cash-out',
-    icon: HandCoins,
+    title: 'Cash In',
+    url: '/dashboard/agent/cash-in',
+    icon: BanknoteArrowDown,
   },
   {
     title: 'Transaction History',
-    url: '/dashboard/user/history',
+    url: '/dashboard/agent/history',
     icon: ClipboardClock,
   },
   {
     title: 'Settings',
-    url: '/dashboard/user/settings',
+    url: '/dashboard/agent/settings',
     icon: Settings,
   },
 ];
 
-export function UserDashboard() {
+export function AgentDashboard() {
   const { data, isLoading } = useGetMyUserInfoQuery(undefined);
   const location = useLocation();
   return (
@@ -105,6 +99,9 @@ export function UserDashboard() {
                     <div className='flex flex-col items-start'>
                       <span className='font-medium text-sm'>
                         {data?.data?.firstName}
+                        <span className='text-xs capitalize'>
+                          {data?.data?.role}
+                        </span>
                       </span>
                       <span className='text-muted-foreground text-xs'>
                         {data?.data?.email}
@@ -115,16 +112,16 @@ export function UserDashboard() {
               </div>
               {/* <ChevronsUpDown className='rounded-md w-5 h-5' /> */}
             </SidebarMenuButton>
-            <LogOutButton />
           </SidebarGroup>
+          <LogOutButton />
         </SidebarFooter>
       </Sidebar>
 
-      <main className='flex-1'>
+      <main className='flex-1 max-w-screen'>
         <div className='px-4 py-2'>
           <SidebarTrigger className='mt-2 w-4 h-4' />
         </div>
-        <div className='md:ml-[16rem] p-6'>
+        <div className='md:ml-[16rem] p-6 overflow-x-hidden overflow-y-auto'>
           <Outlet />
         </div>
       </main>

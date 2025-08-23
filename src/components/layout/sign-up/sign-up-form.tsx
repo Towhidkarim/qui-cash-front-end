@@ -14,6 +14,13 @@ import {
 import { Button } from '@/components/ui/button';
 
 import { Input } from '@/components/ui/input';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 import { Loader2 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router';
@@ -29,6 +36,7 @@ const formSchema = z.object({
   phoneNumber: z.string().min(11).max(11),
   password: z.string().min(6),
   confirmPassword: z.string().min(6),
+  role: z.enum(['user', 'agent']),
 });
 
 export default function SignUpForm() {
@@ -44,6 +52,7 @@ export default function SignUpForm() {
       phoneNumber: '',
       password: '',
       confirmPassword: '',
+      role: 'user',
     },
   });
 
@@ -54,6 +63,7 @@ export default function SignUpForm() {
     password,
     phoneNumber,
     confirmPassword,
+    role,
   }: z.infer<typeof formSchema>) {
     if (password !== confirmPassword) {
       form.setError(
@@ -74,6 +84,7 @@ export default function SignUpForm() {
         phoneNumber,
         firstName: name,
         lastName,
+        role,
       }).unwrap();
       if (response.statusCode === 200) {
         toast.success('Signed Up Succesfully! Proceeding to Sign In');
@@ -159,6 +170,32 @@ export default function SignUpForm() {
                           {...field}
                         />
                       </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                {/* Role Field */}
+                <FormField
+                  control={form.control}
+                  name='role'
+                  render={({ field }) => (
+                    <FormItem className='gap-2 grid'>
+                      <FormLabel>Role</FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder='Select your role' />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value='user'>User</SelectItem>
+                          <SelectItem value='agent'>Agent</SelectItem>
+                        </SelectContent>
+                      </Select>
                       <FormMessage />
                     </FormItem>
                   )}

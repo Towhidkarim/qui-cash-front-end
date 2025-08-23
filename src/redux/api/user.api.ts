@@ -1,7 +1,7 @@
 import type { TResponse, TUserData } from '@/lib/types';
 import { baseApi } from './base.api';
 
-export const authApi = baseApi.injectEndpoints({
+export const userApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getMyUserInfo: build.query<TResponse<TUserData>, undefined>({
       query: () => ({
@@ -16,8 +16,46 @@ export const authApi = baseApi.injectEndpoints({
         method: 'GET',
       }),
     }),
+    updateUserInfo: build.mutation<
+      TResponse<TUserData | null>,
+      {
+        userId: string;
+        firstName: string;
+        lastName: string;
+        email: string;
+      }
+    >({
+      query: (data) => ({
+        url: `/user/update/${data.userId}`,
+        method: 'PATCH',
+        data: {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+        },
+      }),
+      invalidatesTags: ['USER'],
+    }),
+    updateUserPassword: build.mutation<
+      TResponse<TUserData | null>,
+      {
+        oldPassword: string;
+        newPassword: string;
+      }
+    >({
+      query: (data) => ({
+        url: `/user/change-password`,
+        method: 'PATCH',
+        data,
+      }),
+      invalidatesTags: ['USER'],
+    }),
   }),
 });
 
-export const { useGetMyUserInfoQuery, useLazyGetUserInfoByPhoneNumberQuery } =
-  authApi;
+export const {
+  useGetMyUserInfoQuery,
+  useLazyGetUserInfoByPhoneNumberQuery,
+  useUpdateUserInfoMutation,
+  useUpdateUserPasswordMutation,
+} = userApi;

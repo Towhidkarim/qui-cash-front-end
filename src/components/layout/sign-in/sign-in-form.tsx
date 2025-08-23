@@ -35,8 +35,8 @@ export function LoginForm({
         const accessToken = result.data?.accessToken;
         if (accessToken) localStorage.setItem('access_token', accessToken);
         toast.success('Signed In Succesfully!');
-        if (['user', 'admin'].includes(result.data.userInfo.role))
-          navigate('/dashboard/user');
+
+        navigate('/');
       } else toast.error('Invalid Credential!');
     } catch {
       // console.error('Login failed:', err);

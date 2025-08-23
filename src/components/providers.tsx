@@ -8,7 +8,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
   return (
     <Provider store={store}>
       <ThemeProvider>
-        <Toaster />
+        <Toaster position='top-center' />
         {children}
       </ThemeProvider>
       ;

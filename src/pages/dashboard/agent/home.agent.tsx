@@ -13,7 +13,6 @@ import { Separator } from '@/components/ui/separator';
 import {
   ArrowUpRight,
   ArrowDownLeft,
-  CreditCard,
   DollarSign,
   TrendingUp,
   Eye,
@@ -23,11 +22,11 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { useGetMyWalletQuery } from '@/redux/api/wallet.api';
 import { AnimatedCounter } from '@/components/animated-counter';
 import { useGetMyTransactionsQuery } from '@/redux/api/transaction.api';
-import TransactionDisplay from './transaction-display';
+import TransactionDisplay from '../user/transaction-display';
 import { useGetMyUserInfoQuery } from '@/redux/api/user.api';
 import { Link } from 'react-router';
 
-export default function UserHomeDashboard() {
+export default function AgentHomeDashboard() {
   const [balanceVisible, setBalanceVisible] = useState(true);
   //   const currentBalance = 12847.65;
 
@@ -44,9 +43,12 @@ export default function UserHomeDashboard() {
         {/* Header */}
         <div className='flex md:flex-row flex-col md:justify-between md:items-center gap-4'>
           <div>
-            <h1 className='font-bold text-foreground text-3xl'>Dashboard</h1>
+            <h1 className='font-bold text-foreground text-3xl'>
+              Agent Dashboard
+            </h1>
             <p className='text-muted-foreground'>
-              Welcome back! Here's your financial overview.
+              Welcome back {userData?.data?.firstName}! Here's your agent
+              financial overview.
             </p>
           </div>
           <div className='flex items-center gap-2'>
@@ -106,7 +108,7 @@ export default function UserHomeDashboard() {
           <Card className='hover:shadow-lg transition-shadow'>
             <CardHeader className='flex flex-row justify-between items-center space-y-0 pb-2'>
               <CardTitle className='font-medium text-sm'>
-                Total Transaction
+                Total Cash Out
               </CardTitle>
               <ArrowUpRight className='w-4 h-4 text-chart-2' />
             </CardHeader>
@@ -114,11 +116,20 @@ export default function UserHomeDashboard() {
               <div className='font-bold text-chart-2 text-2xl'>
                 TK&nbsp;
                 {transactionData?.data
-                  ?.reduce((prev, curr) => (prev += curr.amount), 0)
-                  ?.toLocaleString()}
+                  ? transactionData.data
+                      .reduce(
+                        (prev, curr) =>
+                          (prev +=
+                            curr.transactionType === 'cashOut'
+                              ? curr.amount
+                              : 0),
+                        0
+                      )
+                      ?.toLocaleString()
+                  : 0}
               </div>
               <p className='text-muted-foreground text-xs'>
-                total transaction amount
+                total cash out amount
               </p>
             </CardContent>
           </Card>
@@ -126,7 +137,7 @@ export default function UserHomeDashboard() {
           <Card className='hover:shadow-lg transition-shadow'>
             <CardHeader className='flex flex-row justify-between items-center space-y-0 pb-2'>
               <CardTitle className='font-medium text-sm'>
-                Total Cash in
+                Total Cash In
               </CardTitle>
               <ArrowDownLeft className='w-4 h-4 text-chart-5' />
             </CardHeader>
@@ -147,25 +158,32 @@ export default function UserHomeDashboard() {
                   : 0}
               </div>
               <p className='text-muted-foreground text-xs'>
-                Total cumulated cash in this account
+                total cash in amount
               </p>
             </CardContent>
           </Card>
 
-          {/* <Card className='hover:shadow-lg transition-shadow'>
+          <Card className='hover:shadow-lg transition-shadow'>
             <CardHeader className='flex flex-row justify-between items-center space-y-0 pb-2'>
               <CardTitle className='font-medium text-sm'>
-                Savings Rate
+                Debit + Credit
               </CardTitle>
               <DollarSign className='w-4 h-4 text-chart-1' />
             </CardHeader>
             <CardContent>
-              <div className='font-bold text-chart-1 text-2xl'>65.6%</div>
+              <div className='font-bold text-chart-1 text-2xl'>
+                TK&nbsp;
+                {transactionData?.data
+                  ? transactionData.data
+                      .reduce((prev, curr) => (prev += curr.amount), 0)
+                      ?.toLocaleString()
+                  : 0}
+              </div>
               <p className='text-muted-foreground text-xs'>
-                +4.2% from last month
+                Total Debit + Credit on this account
               </p>
             </CardContent>
-          </Card> */}
+          </Card>
         </div>
 
         {/* Recent Transactions */}
@@ -179,7 +197,7 @@ export default function UserHomeDashboard() {
                 </CardDescription>
               </div>
               <Button variant='outline' size='sm' asChild>
-                <Link to='/dashboard/user/history'>View All</Link>
+                <Link to='/dashboard/agent/history'>View All</Link>
               </Button>
             </div>
           </CardHeader>
@@ -206,7 +224,7 @@ export default function UserHomeDashboard() {
         </Card>
 
         {/* Quick Actions */}
-        <Card>
+        {/* <Card>
           <CardHeader>
             <CardTitle>Quick Actions</CardTitle>
             <CardDescription>Manage your finances efficiently</CardDescription>
@@ -243,7 +261,7 @@ export default function UserHomeDashboard() {
               </Button>
             </div>
           </CardContent>
-        </Card>
+        </Card> */}
       </div>
     </div>
   );

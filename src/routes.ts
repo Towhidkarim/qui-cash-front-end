@@ -13,6 +13,10 @@ import UserHomeDashboard from './pages/dashboard/user/home.user.dashboard';
 import TransactionHistoryUser from './pages/dashboard/user/history.user.dashboard';
 import SendMoneyPage from './pages/dashboard/user/send-money.user';
 import CashOutPage from './pages/dashboard/user/cash-out.user';
+import UserSettingsPage from './pages/dashboard/user/user.settings';
+import AgentHomeDashboard from './pages/dashboard/agent/home.agent';
+import { AgentDashboard } from './pages/dashboard/agent/agent.dashboard';
+import CashInPage from './pages/dashboard/agent/cash-in.agent';
 
 export const routes = createBrowserRouter([
   {
@@ -42,6 +46,18 @@ export const routes = createBrowserRouter([
       { path: 'history', Component: TransactionHistoryUser },
       { path: 'send-money', Component: SendMoneyPage },
       { path: 'cash-out', Component: CashOutPage },
+      { path: 'settings', Component: UserSettingsPage },
+    ],
+  },
+  {
+    path: '/dashboard/agent',
+    Component: withAuth(AgentDashboard, ['agent', 'admin']),
+    children: [
+      { Component: AgentHomeDashboard, index: true },
+      { path: 'history', Component: TransactionHistoryUser },
+      { path: 'send-money', Component: SendMoneyPage },
+      { path: 'cash-in', Component: CashInPage },
+      { path: 'settings', Component: UserSettingsPage },
     ],
   },
 ]);

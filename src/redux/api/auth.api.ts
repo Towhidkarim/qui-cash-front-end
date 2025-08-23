@@ -10,6 +10,7 @@ type TSignUpCredentials = {
   firstName: string;
   lastName: string;
   email: string;
+  role: 'user' | 'agent';
   phoneNumber: string;
   password: string;
 };
@@ -28,6 +29,7 @@ export const authApi = baseApi.injectEndpoints({
         method: 'POST',
         data: credentials,
       }),
+      invalidatesTags: ['USER', 'TRANSACTION', 'WALLET'],
     }),
     signUp: build.mutation<
       TResponse<{ newUser: TUserData; newWallet: TWallet }>,
@@ -38,6 +40,7 @@ export const authApi = baseApi.injectEndpoints({
         method: 'POST',
         data: userInfo,
       }),
+      invalidatesTags: ['USER', 'TRANSACTION', 'WALLET'],
     }),
   }),
 });

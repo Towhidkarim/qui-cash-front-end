@@ -25,7 +25,7 @@ import { Search, User, DollarSign, Send, ArrowLeft, Check } from 'lucide-react';
 import { useLazyGetUserInfoByPhoneNumberQuery } from '@/redux/api/user.api';
 import type { TUserData } from '@/lib/types';
 import { toast } from 'sonner';
-import { useCashOutMutation } from '@/redux/api/transaction.api';
+import { useCashInMutation } from '@/redux/api/transaction.api';
 import { useNavigate } from 'react-router';
 
 const phoneSchema = z.object({
@@ -44,13 +44,13 @@ const amountSchema = z.object({
 
 type Step = 'phone' | 'search' | 'amount' | 'confirm';
 
-export default function CashOutPage() {
+export default function CashInPage() {
   const [triggerGetUserInfo, { isFetching }] =
     useLazyGetUserInfoByPhoneNumberQuery();
 
   const navigate = useNavigate();
 
-  const [cashOut, { isLoading: transactionIsLoading }] = useCashOutMutation();
+  const [cashOut, { isLoading: transactionIsLoading }] = useCashInMutation();
 
   const [currentStep, setCurrentStep] = useState<Step>('phone');
   const [searchResults, setSearchResults] = useState<TUserData | null>(null);
@@ -75,7 +75,7 @@ export default function CashOutPage() {
     setIsSearching(true);
     const res = await triggerGetUserInfo(values.phone);
 
-    if (res.data?.data?.role !== 'agent') setSearchResults(null);
+    if (res.data?.data?.role === 'agent') setSearchResults(null);
     else setSearchResults(res.data?.data ?? null);
     setCurrentStep('search');
     setIsSearching(isFetching);
@@ -100,14 +100,14 @@ export default function CashOutPage() {
     });
     console.log(res.data);
     if (!res.data?.data) {
-      toast.error('Cash out failed, error occured');
+      toast.error('Cash in failed, error occured');
       setIsSubmitting(false);
       return;
     }
 
     setIsSubmitting(transactionIsLoading);
     //   alert('Money sent successfully!');
-    toast.success('Cash out successfully!');
+    toast.success('Cash in successfully!');
     // Reset form
     setCurrentStep('phone');
     setSelectedUser(null);
@@ -116,7 +116,7 @@ export default function CashOutPage() {
     setAmount(0);
     phoneForm.reset();
     amountForm.reset();
-    navigate('/dashboard/user');
+    navigate('/dashboard/agent');
   };
 
   const getStepNumber = (step: Step) => {
@@ -136,7 +136,7 @@ export default function CashOutPage() {
         {/* Progress Bar */}
         <div className='mb-8'>
           <div className='flex justify-between items-center mb-4'>
-            <h1 className='font-bold text-foreground text-3xl'>Cash Out</h1>
+            <h1 className='font-bold text-foreground text-3xl'>Cash In</h1>
             <div className='text-muted-foreground text-sm'>
               Step {getStepNumber(currentStep)} of 4
             </div>
@@ -186,10 +186,10 @@ export default function CashOutPage() {
             <CardHeader>
               <CardTitle className='flex items-center gap-2'>
                 <Search className='w-5 h-5' />
-                Enter Agent Phone Number
+                Enter User Phone Number
               </CardTitle>
               <CardDescription>
-                Enter the phone number of the agent you want to cash out to
+                Enter the phone number of the agent you want to cash in to
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -220,7 +220,7 @@ export default function CashOutPage() {
                     className='w-full'
                     disabled={isSearching}
                   >
-                    {isSearching ? 'Searching...' : 'Search Agent'}
+                    {isSearching ? 'Searching...' : 'Search User'}
                   </Button>
                 </form>
               </Form>
@@ -262,7 +262,7 @@ export default function CashOutPage() {
                   </div>
                 ) : (
                   <div className='py-8 text-muted-foreground text-center'>
-                    No agents found for this phone number
+                    No user found for this phone number
                   </div>
                 )}
               </div>
@@ -287,7 +287,7 @@ export default function CashOutPage() {
                 Enter Amount
               </CardTitle>
               <CardDescription>
-                How much would you like to cash out to{' '}
+                How much would you like to cash in to{' '}
                 {selectedUser.firstName + ' ' + selectedUser.lastName}?
               </CardDescription>
             </CardHeader>
@@ -386,7 +386,7 @@ export default function CashOutPage() {
 
                   <div className='space-y-2'>
                     <div className='flex justify-between'>
-                      <span className='text-muted-foreground'>Agent:</span>
+                      <span className='text-muted-foreground'>User:</span>
                       <span className='font-medium'>
                         {selectedUser.firstName + ' ' + selectedUser.lastName}
                       </span>
@@ -431,7 +431,7 @@ export default function CashOutPage() {
                     className='flex-1'
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? 'Sending...' : 'Cash Out'}
+                    {isSubmitting ? 'Sending...' : 'Cash In'}
                   </Button>
                 </div>
               </div>

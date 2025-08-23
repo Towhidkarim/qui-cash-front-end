@@ -1,7 +1,7 @@
 import type { TResponse, TWallet } from '@/lib/types';
 import { baseApi } from './base.api';
 
-export const authApi = baseApi.injectEndpoints({
+export const walletApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getMyWallet: build.query<TResponse<TWallet>, undefined>({
       query: () => ({
@@ -13,4 +13,4 @@ export const authApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetMyWalletQuery } = authApi;
+export const { useGetMyWalletQuery } = walletApi;

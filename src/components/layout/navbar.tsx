@@ -14,6 +14,7 @@ import Logo from './logo';
 import { Link } from 'react-router';
 import { ModeToggle } from '../mode-toggle';
 import { useGetMyUserInfoQuery } from '@/redux/api/user.api';
+import LogOutButton from '../logout-button';
 
 const navigationLinks = [
   { href: '/', label: 'Home' },
@@ -24,7 +25,10 @@ const navigationLinks = [
 ];
 
 export default function NavBar() {
-  const { data } = useGetMyUserInfoQuery(undefined);
+  const { data, isFetching } = useGetMyUserInfoQuery(undefined);
+  let dashboardRoute = '/dashboard/user';
+  if (data?.data?.role === 'agent') dashboardRoute = '/dashboard/agent';
+  else if (data?.data?.role === 'admin') dashboardRoute = '/dashboard/admin';
   return (
     <header className='top-0 z-10 sticky bg-background px-4 md:px-6 border-b'>
       <div className='flex justify-between items-center gap-4 h-16'>
@@ -34,7 +38,7 @@ export default function NavBar() {
           <Popover>
             <PopoverTrigger asChild>
               <Button
-                className='group md:hidden size-8'
+                className='group lg:hidden size-8'
                 variant='ghost'
                 size='icon'
               >
@@ -65,7 +69,7 @@ export default function NavBar() {
                 </svg>
               </Button>
             </PopoverTrigger>
-            <PopoverContent align='start' className='md:hidden p-1 w-36'>
+            <PopoverContent align='start' className='lg:hidden p-1 w-36'>
               <NavigationMenu className='*:w-full max-w-none'>
                 <NavigationMenuList className='flex-col items-start gap-0 md:gap-2'>
                   {navigationLinks.map((link, index) => (
@@ -84,14 +88,12 @@ export default function NavBar() {
           </Popover>
           {/* Main nav */}
           <div className='flex items-center gap-6'>
-            <Link to='/' className='text-primary hover:text-primary/90'>
-              <Logo />
-            </Link>
+            <Logo />
           </div>
         </div>
         {/* Middle Section */}
         <div>
-          <NavigationMenu className='max-md:hidden'>
+          <NavigationMenu className='max-lg:hidden'>
             <NavigationMenuList className='gap-2 -translate-x-4'>
               {navigationLinks.map((link, index) => (
                 <NavigationMenuItem key={index}>
@@ -111,10 +113,10 @@ export default function NavBar() {
           <ModeToggle />
           {data?.data ? (
             <>
-              <Button asChild>
-                <Link to='/signin'>Dashboard</Link>
+              <Button disabled={isFetching} asChild>
+                <Link to={dashboardRoute}>Dashboard</Link>
               </Button>
-              <Button>Log Out</Button>
+              <LogOutButton />
             </>
           ) : (
             <Button asChild>

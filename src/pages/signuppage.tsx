@@ -2,7 +2,6 @@ import { GalleryVerticalEnd } from 'lucide-react';
 
 import SignUpForm from '@/components/layout/sign-up/sign-up-form';
 import Logo from '@/components/layout/logo';
-import { Link } from 'react-router';
 import Providers from '@/components/providers';
 
 export default function SignUpPage() {
@@ -18,12 +17,12 @@ export default function SignUpPage() {
         </div>
         <div className='flex flex-col gap-4 p-6 md:p-10'>
           <div className='flex justify-center md:justify-start gap-2'>
-            <Link to='/' className='flex items-center gap-2 font-medium'>
+            <div className='flex items-center gap-2 font-medium'>
               <div className='flex justify-center items-center bg-primary rounded-md size-6 text-primary-foreground'>
                 <GalleryVerticalEnd className='size-4' />
               </div>
               <Logo />
-            </Link>
+            </div>
           </div>
           <div className='flex flex-row-reverse flex-1 justify-center items-center'>
             <div className='w-full max-w-md'>
