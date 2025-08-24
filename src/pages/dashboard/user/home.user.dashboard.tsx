@@ -1,5 +1,3 @@
-'use client';
-
 import { useState } from 'react';
 import {
   Card,
@@ -13,8 +11,6 @@ import { Separator } from '@/components/ui/separator';
 import {
   ArrowUpRight,
   ArrowDownLeft,
-  CreditCard,
-  DollarSign,
   TrendingUp,
   Eye,
   EyeOff,
@@ -202,46 +198,6 @@ export default function UserHomeDashboard() {
                 transactionsData={transactionData.data}
               />
             )}
-          </CardContent>
-        </Card>
-
-        {/* Quick Actions */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Quick Actions</CardTitle>
-            <CardDescription>Manage your finances efficiently</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className='gap-4 grid grid-cols-2 md:grid-cols-4'>
-              <Button
-                className='flex-col gap-2 bg-transparent h-20'
-                variant='outline'
-              >
-                <CreditCard className='w-6 h-6' />
-                <span className='text-sm'>Transfer</span>
-              </Button>
-              <Button
-                className='flex-col gap-2 bg-transparent h-20'
-                variant='outline'
-              >
-                <DollarSign className='w-6 h-6' />
-                <span className='text-sm'>Pay Bills</span>
-              </Button>
-              <Button
-                className='flex-col gap-2 bg-transparent h-20'
-                variant='outline'
-              >
-                <TrendingUp className='w-6 h-6' />
-                <span className='text-sm'>Invest</span>
-              </Button>
-              <Button
-                className='flex-col gap-2 bg-transparent h-20'
-                variant='outline'
-              >
-                <ArrowUpRight className='w-6 h-6' />
-                <span className='text-sm'>Export</span>
-              </Button>
-            </div>
           </CardContent>
         </Card>
       </div>

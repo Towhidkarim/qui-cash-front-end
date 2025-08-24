@@ -27,7 +27,6 @@ import {
 import {
   Search,
   Filter,
-  Download,
   RefreshCw,
   TrendingUp,
   TrendingDown,
@@ -181,14 +180,11 @@ export default function ManageTransactionsPage() {
             </p>
           </div>
           <div className='flex gap-2'>
-            <Button variant='outline' size='sm'>
-              <Download className='mr-2 w-4 h-4' />
-              Export
-            </Button>
+            {/* <Button variant='outline' size='sm'>
             <Button variant='outline' size='sm'>
               <RefreshCw className='mr-2 w-4 h-4' />
               Refresh
-            </Button>
+            </Button> */}
           </div>
         </div>
 

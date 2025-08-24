@@ -23,13 +23,21 @@ This is a **full-stack application** that simulates a digital wallet service. It
 - ⚛ **React (TypeScript)**
 - 🔄 **Redux Toolkit + RTK Query**
 - 🌍 **React Router**
-- 🎨 **Tailwind CSS**
+- 🎨 **Tailwind CSS, ShadCn and other blocks**
 
 ### **Backend**
 
 - 🟢 **Node.js + Express**
 - 🗄 **MongoDB + Mongoose**
 - 🔐 **JWT + bcrypt**
+
+---
+
+## Live Links
+
+- Front-end(current repo): [https://qui-cash-front-end.vercel.app/](https://qui-cash-front-end.vercel.app/)
+- Back-end: [https://quicash-digitalwallet-express.onrender.com/](https://quicash-digitalwallet-express.onrender.com/)
+- Note! The backend takes a few moments to spin up! please visit the backend URL to wake it up before proceeding to the front-end URL
 
 ---
 
