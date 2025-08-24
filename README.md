@@ -74,10 +74,12 @@ password: admin_password
 - Persistent sessions & secure token storage
 - Role-based separated dashboards with respective features
 
+### Important!!! the system is very similar to bKash. Regular users can send money and cash out to some agent. Agents can cash in to any user account. Users can't directly cash in by themselves. Agents can't directly cash out either without users invoking
+
 ### ✅ **User Dashboard**
 
 - Wallet overview with **real-time balance**
-- **Cash Out, Send Money, (Cash In through Agent like bKash)**
+- **Cash Out to agents, Send Money, (Cash In through Agent like bKash)**
 - Transaction history with **pagination & filters**
 - Profile management
 
