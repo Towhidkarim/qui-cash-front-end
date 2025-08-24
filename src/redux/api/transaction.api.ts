@@ -51,6 +51,20 @@ export const transactionApi = baseApi.injectEndpoints({
       }),
       providesTags: ['ALL_TRANSACTIONS'],
     }),
+    addMoneyAdmin: build.mutation<
+      TResponse<TTRansaction>,
+      {
+        recipientPhoneNumber: string;
+        amount: number;
+      }
+    >({
+      query: (data) => ({
+        url: '/transaction/add-money-admin',
+        method: 'POST',
+        data,
+      }),
+      invalidatesTags: ['TRANSACTION', 'ALL_TRANSACTIONS'],
+    }),
   }),
 });
 
@@ -60,4 +74,5 @@ export const {
   useCashOutMutation,
   useCashInMutation,
   useGetAllTransactionsQuery,
+  useAddMoneyAdminMutation,
 } = transactionApi;

@@ -21,6 +21,7 @@ const navigationLinks = [
   { href: '/features', label: 'Features' },
   { href: '/pricing', label: 'Pricing' },
   { href: '/about', label: 'About' },
+  { href: '/contact-us', label: 'Contact Us' },
   { href: '/faq', label: 'FAQ' },
 ];
 
@@ -71,18 +72,23 @@ export default function NavBar() {
             </PopoverTrigger>
             <PopoverContent align='start' className='lg:hidden p-1 w-36'>
               <NavigationMenu className='*:w-full max-w-none'>
-                <NavigationMenuList className='flex-col items-start gap-0 md:gap-2'>
-                  {navigationLinks.map((link, index) => (
-                    <NavigationMenuItem
-                      key={index}
-                      className='px-4 py-3 w-full'
-                    >
-                      <NavigationMenuLink href={link.href} className='py-2'>
-                        {link.label}
-                      </NavigationMenuLink>
-                    </NavigationMenuItem>
-                  ))}
-                </NavigationMenuList>
+                <div id='nav-url-items'>
+                  <NavigationMenuList
+                    id=''
+                    className='flex-col items-start gap-0 md:gap-2'
+                  >
+                    {navigationLinks.map((link, index) => (
+                      <NavigationMenuItem
+                        key={index}
+                        className='px-4 py-3 w-full'
+                      >
+                        <NavigationMenuLink href={link.href} className='py-2'>
+                          {link.label}
+                        </NavigationMenuLink>
+                      </NavigationMenuItem>
+                    ))}
+                  </NavigationMenuList>
+                </div>
               </NavigationMenu>
             </PopoverContent>
           </Popover>
@@ -109,7 +115,7 @@ export default function NavBar() {
           </NavigationMenu>
         </div>
         {/* Right side */}
-        <div className='flex items-center gap-4'>
+        <div id='theme-section' className='flex items-center gap-4'>
           <ModeToggle />
           {data?.data ? (
             <>

@@ -49,7 +49,7 @@ export default function FooterSection() {
           </div>
           <div>
             <h3 className='mb-4 font-semibold text-lg'>Quick Links</h3>
-            <nav className='space-y-2 text-sm'>
+            <nav id='quick-links' className='space-y-2 text-sm'>
               {navigationLinks.map((item, index) => (
                 <Link
                   key={index}

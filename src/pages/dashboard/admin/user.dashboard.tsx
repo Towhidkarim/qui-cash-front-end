@@ -17,7 +17,14 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
 import { useGetMyUserInfoQuery } from '@/redux/api/user.api';
 
-import { User, Home, Settings, Users, ArrowRightLeft } from 'lucide-react';
+import {
+  User,
+  Home,
+  Settings,
+  Users,
+  ArrowRightLeft,
+  Banknote,
+} from 'lucide-react';
 import { Link, Outlet, ScrollRestoration, useLocation } from 'react-router';
 
 // Menu items
@@ -26,6 +33,11 @@ const items = [
     title: 'Home',
     url: '/dashboard/admin',
     icon: Home,
+  },
+  {
+    title: 'Add Money (admin)',
+    url: '/dashboard/admin/add-money-admin',
+    icon: Banknote,
   },
   {
     title: 'Manage Users',

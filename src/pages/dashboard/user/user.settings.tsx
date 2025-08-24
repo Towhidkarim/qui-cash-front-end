@@ -28,6 +28,7 @@ import {
   Lock,
   Mail,
   Phone,
+  Mountain,
 } from 'lucide-react';
 import {
   useGetMyUserInfoQuery,
@@ -35,6 +36,7 @@ import {
   useUpdateUserPasswordMutation,
 } from '@/redux/api/user.api';
 import { toast } from 'sonner';
+import { tourLocalStorageKey } from '@/lib/constants';
 
 const userUpdateSchema = z.object({
   firstName: z
@@ -479,7 +481,35 @@ export default function UserSettingsPage() {
             </CardContent>
           </Card>
         </div>
-
+        {/* Joyride Section  */}
+        <Card className='mt-8'>
+          <CardHeader>
+            <h1 className='font-bold text-2xl'>
+              <span>
+                <Mountain className='inline-block mx-2 -translate-y-1' />
+              </span>
+              Guided Tour Settings
+            </h1>
+            <CardDescription>
+              You can go through the initial guided tour again by resetting it
+              and going back to the homepage
+            </CardDescription>
+          </CardHeader>
+          <CardContent className='flex flex-row justify-start items-center gap-4'>
+            {/* <CheckCircle /> */}
+            <Button
+              className='w-44'
+              onClick={() => {
+                localStorage.setItem(tourLocalStorageKey, 'false');
+                toast.success('Guide Reset Succesfully!', {
+                  description: 'Go back to the homepage to revisit the guide',
+                });
+              }}
+            >
+              Reset Guided Tour{' '}
+            </Button>
+          </CardContent>
+        </Card>
         {/* Security Tips */}
         <Card className='shadow-sm mt-8 border-border'>
           <CardHeader>

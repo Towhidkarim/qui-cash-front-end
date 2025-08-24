@@ -7,7 +7,7 @@ import Providers from '@/components/providers';
 export default function SignUpPage() {
   return (
     <Providers>
-      <div className='grid lg:grid-cols-2 min-h-svh'>
+      <div className='grid min-h-svh'>
         <div className='hidden lg:block relative bg-muted'>
           <img
             src='/placeholder.svg'

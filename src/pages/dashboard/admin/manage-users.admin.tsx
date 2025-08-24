@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -32,6 +33,7 @@ import {
   MoreHorizontal,
   ChevronLeft,
   ChevronRight,
+  Info,
 } from 'lucide-react';
 import {
   DropdownMenu,
@@ -248,7 +250,16 @@ export default function ManageUsersPage() {
             </div>
           </CardContent>
         </Card>
-
+        {/* Important alert  */}
+        <Alert variant='default'>
+          <Info />
+          <AlertTitle>Note!</AlertTitle>
+          <AlertDescription>
+            You can deactivate/activate a user using the action control button
+            (•••) resulting in blocking/unblocking that user respectively.
+            Deactivated accounts can't operate their account
+          </AlertDescription>
+        </Alert>
         {/* Users Table */}
         <Card>
           <CardContent className='px-5'>

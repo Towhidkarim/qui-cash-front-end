@@ -21,6 +21,8 @@ import { AdminDashboard } from './pages/dashboard/admin/user.dashboard';
 import AdminHomeDashboard from './pages/dashboard/admin/home.admin';
 import ManageUsersPage from './pages/dashboard/admin/manage-users.admin';
 import ManageTransactionsPage from './pages/dashboard/admin/manage-transactions.admin';
+import AddMoneyAdmin from './pages/dashboard/admin/add-money.admin';
+import ContactPage from './pages/contactpage';
 
 export const routes = createBrowserRouter([
   {
@@ -31,6 +33,7 @@ export const routes = createBrowserRouter([
       { path: 'features', Component: FeaturesPage },
       { path: 'pricing', Component: PricingPage },
       { path: 'about', Component: AboutPage },
+      { path: 'contact-us', Component: ContactPage },
       { path: 'faq', Component: FAQPage },
     ],
   },
@@ -70,6 +73,7 @@ export const routes = createBrowserRouter([
     children: [
       { Component: AdminHomeDashboard, index: true },
       { path: 'history', Component: TransactionHistoryUser },
+      { path: 'add-money-admin', Component: AddMoneyAdmin },
       { path: 'manage-users', Component: ManageUsersPage },
       { path: 'manage-transactions', Component: ManageTransactionsPage },
 

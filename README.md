@@ -1,69 +1,149 @@
-# React + TypeScript + Vite
+# 💰 Digital Wallet Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A **secure, role-based digital wallet system** built with **React (TypeScript)** and **Node.js (Express)**. The platform allows **users, agents, and admins** to manage transactions with a modern, responsive UI and real-time updates powered by Redux and RTK Query!
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Overview
 
-## Expanding the ESLint configuration
+This is a **full-stack application** that simulates a digital wallet service. It includes:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **JWT Authentication**
+- **Role-based separate Dashboards**
+- **Secure Transactions**
+- **Responsive UI** with Tailwind CSS and Shad Cn and other ui blocks from various sources
+- **Data Visualization** using chart components and Interactive Guided Tour using **React JoyRide**
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 🛠 Tech Stack
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### **Frontend**
+
+- ⚛ **React (TypeScript)**
+- 🔄 **Redux Toolkit + RTK Query**
+- 🌍 **React Router**
+- 🎨 **Tailwind CSS**
+
+### **Backend**
+
+- 🟢 **Node.js + Express**
+- 🗄 **MongoDB + Mongoose**
+- 🔐 **JWT + bcrypt**
+
+---
+
+## Testing Credentials
+
+### Admin
+
+```
+phone: 01744161517
+password: admin_password
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Agent
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```
+phone: 01715151515
+password: admin_password
+```
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## ✨ Features
+
+### ✅ **Public Section**
+
+- **Home Page** — Hero banner, responsive design with guided tour on first visit
+- **About, Features, Contact, FAQ** pages
+- **Pricing Page** to display service fees
+
+### ✅ **Authentication**
+
+- **Login / Register** with JWT
+- Role selection: **User** or **Agent** while signing up
+- Persistent sessions & secure token storage
+- Role-based separated dashboards with respective features
+
+### ✅ **User Dashboard**
+
+- Wallet overview with **real-time balance**
+- **Cash Out, Send Money, (Cash In through Agent like bKash)**
+- Transaction history with **pagination & filters**
+- Profile management
+
+### ✅ **Agent Dashboard**
+
+- **Cash In** for users
+- Track handled transactions
+- Profile management
+
+### ✅ **Admin Dashboard**
+
+- Overview: total users, agents, transaction stats
+- Manage users, block/unblock any account. Blocked accounts can't visit their dashboards, nor can they perform transactions
+- Advanced transaction filtering & search
+- Add money to literally any account (as admin)
+- Profile management
+
+### ✅ **General Features**
+
+- Role-based navigation
+- Skeleton loaders & smooth transitions
+- **Toast notifications** for feedback
+- **Guided Tour** with `react-joyride`
+- Dark/Light **Theme Toggle**
+- Fully **responsive design**
+
+---
+
+## 📂 Project Structure
+
+```
+project-root/
+├── public/
+│
+├── src/
+│   ├── assets/            # Static files like images, icons, etc.
+│   ├── components/        # Reusable UI components
+│   ├── hooks/             # Custom React hooks
+│   ├── lib/               # Utility functions or helper libraries
+│   ├── pages/             # Page-level components (routes)
+│   ├── redux/             # Redux Toolkit slices, store, and RTK Query
+│   ├── App.css            # Global CSS for the App component
+│   ├── App.tsx            # Root App component
+│   ├── index.css          # Global styles
+│   ├── main.tsx           # App entry point (React DOM render)
+│   ├── routes.ts          # Centralized app route definitions
+│   └── vite-env.d.ts      # Vite TypeScript environment definitions
+│
+├── .env                   # Environment variables
+├── .gitignore             # Git ignore file
+
+```
+
+---
+
+## ⚡ Installation & Setup
+
+### **Steps**
+
+```bash
+# Clone repository
+git clone https://github.com/Towhidkarim/qui-cash-front-end
+
+#Navigate to the project directory
+cd qui-cash-front-end
+
+#Run installation commands
+pnpm install
+
+#Set Environment variable, for example like this
+
+VITE_BACKEND_URL='http://localhost:4000/api/v1'
+
+#Start in dev mode
+pnpm dev
+
 ```

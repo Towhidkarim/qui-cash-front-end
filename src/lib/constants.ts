@@ -3,3 +3,5 @@ export const COMISSIONS = {
   cashOut: 0.03, // 3% commission for cash-out transactions
   sendMoney: 0.01, // 1% commission for sending money
 } as const;
+
+export const tourLocalStorageKey = 'tour_done';

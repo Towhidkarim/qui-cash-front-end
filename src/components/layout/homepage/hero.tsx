@@ -1,11 +1,15 @@
 import { MoveRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router';
 
 export default function HeroSection() {
   return (
     <div className='w-full'>
       <div className='mx-auto container'>
-        <div className='flex flex-col justify-center items-center gap-8 py-20 lg:py-32'>
+        <div
+          id='hero'
+          className='flex flex-col justify-center items-center gap-8 py-20 lg:py-32'
+        >
           <div>
             <Button variant='secondary' size='sm' className='gap-4'>
               Payments Made Effortless <MoveRight className='w-4 h-4' />
@@ -24,12 +28,16 @@ export default function HeroSection() {
               simplicity — all in one place.
             </p>
           </div>
-          <div className='flex flex-row gap-3'>
-            <Button size='lg' className='gap-4' variant='outline'>
-              Get Started Now!
-            </Button>
-            <Button size='lg' className='gap-4'>
-              Sign up here <MoveRight className='w-4 h-4' />
+          <div id='cta' className='flex flex-row gap-3'>
+            <Link to='/signup'>
+              <Button size='lg' className='gap-4' variant='outline'>
+                Get Started Now!
+              </Button>
+            </Link>
+            <Button size='lg' className='gap-4' asChild>
+              <Link to='/signup'>
+                Sign up here <MoveRight className='w-4 h-4' />
+              </Link>
             </Button>
           </div>
         </div>
