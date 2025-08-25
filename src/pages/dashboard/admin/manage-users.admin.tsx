@@ -182,7 +182,7 @@ export default function ManageUsersPage() {
           <Card>
             <CardHeader className='flex flex-row justify-between items-center space-y-0 pb-2'>
               <CardTitle className='font-mediumy text-sm'>
-                Active Users
+                Active Accounts
               </CardTitle>
               <UserCheck className='w-4 h-4 text-accent' />
             </CardHeader>
@@ -195,7 +195,7 @@ export default function ManageUsersPage() {
           <Card>
             <CardHeader className='flex flex-row justify-between items-center space-y-0 pb-2'>
               <CardTitle className='font-medium text-sm'>
-                Inactive Users
+                Deactivated/Blocked Accounts
               </CardTitle>
               <UserX className='w-4 h-4 text-muted-foreground' />
             </CardHeader>

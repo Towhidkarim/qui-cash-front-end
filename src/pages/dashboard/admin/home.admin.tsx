@@ -40,7 +40,6 @@ import { useGetAllUserQuery } from '@/redux/api/user.api';
 import { useGetAllTransactionsQuery } from '@/redux/api/transaction.api';
 import { generateDashboardData } from '@/lib/utils';
 
-// Mock data for admin dashboard
 // const overviewData = {
 //   totalUsers: 12847,
 //   totalAgents: 342,
@@ -75,7 +74,7 @@ const transactionChartConfig = {
     color: '#0369a1', // sky-700
   },
   volume: {
-    label: 'Volume ($)',
+    label: 'Volume (BDT)',
     color: '#15803d', // green-700
   },
 };

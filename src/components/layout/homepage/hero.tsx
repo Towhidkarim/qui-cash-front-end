@@ -6,16 +6,13 @@ export default function HeroSection() {
   return (
     <div className='w-full'>
       <div className='mx-auto container'>
-        <div
-          id='hero'
-          className='flex flex-col justify-center items-center gap-8 py-20 lg:py-32'
-        >
+        <div className='flex flex-col justify-center items-center gap-8 py-20 lg:py-32'>
           <div>
             <Button variant='secondary' size='sm' className='gap-4'>
               Payments Made Effortless <MoveRight className='w-4 h-4' />
             </Button>
           </div>
-          <div className='flex flex-col gap-4'>
+          <div id='hero' className='flex flex-col gap-4'>
             <h1 className='max-w-2xl font-regular text-5xl md:text-7xl text-center tracking-tighter'>
               <span className=''>Your Digital Wallet, Done Right</span>
               <span className='relative flex justify-center md:pt-1 md:pb-4 w-full overflow-hidden text-center'></span>
